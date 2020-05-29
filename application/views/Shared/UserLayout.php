@@ -24,7 +24,7 @@
           <a class="nav-link" href="<?php echo site_url("User/Order"); ?>">New Order</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("User/Index"); ?>">Orders</a>
+          <a class="nav-link" href="<?php echo site_url("User/History"); ?>">Orders</a>
         </li>
     
       </ul>
@@ -33,7 +33,7 @@
         </form>
     </div>
   </nav>
-  <div class="container mt-5">
+  <div class="container-fluid mt-5">
     <?php $this->load->view($Content); ?>
   </div>
 

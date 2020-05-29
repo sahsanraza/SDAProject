@@ -8,11 +8,16 @@ class User extends CI_Controller
         if (!$this->session->userdata('Loggedin')) {
             redirect('Account/SignIn');
         }
+        if ($this->session->userdata('Role') != "User") {
+            redirect("Error");
+        }
         $this->load->model('Order_Model');
     }
     public function Index()
     {
-        redirect('User/History');
+        $data['Content'] = 'User/Home';
+        $data['Title'] = 'IMS';
+        $this->load->view('Shared/UserLayout', $data);
     }
     public function History(){
        $data['Content'] = 'User/History';
@@ -30,7 +35,7 @@ class User extends CI_Controller
             $data['Title'] = 'New Order';
             $data['User']=$this->Account_Model->GetUserDetails($this->session->userdata('Email'));
             $data['Products'] = $this->Product_Model->GetActiveProducts();
-            $this->load->view('Shared/Layout', $data);
+            $this->load->view('Shared/UserLayout', $data);
         }
         else{
             $Cart=$this->session->userdata('Cart');

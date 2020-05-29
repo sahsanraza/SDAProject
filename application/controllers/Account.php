@@ -10,7 +10,6 @@ class Account extends CI_Controller
         else{
             redirect("Account/SignIn");
         }
-
     }
 
 
@@ -58,10 +57,9 @@ class Account extends CI_Controller
                 $result = $result + $help;
                 $this->session->set_userdata($result);
                 if ($result['Role'] == "Admin") {
-
-                    redirect("Admin/Products");
+                    redirect("Admin/");
                 } else {
-                    redirect("User/Order");
+                    redirect("User/");
                 }
             }
         }

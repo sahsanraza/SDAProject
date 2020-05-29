@@ -1,4 +1,5 @@
-<div class="row">
+<div class="row" style="padding:1% 5%">
+<h2 class="mb-4">My Orders</h2>
 <?php if(!empty($Orders)): ?>
 <table class="table table-hover">
   <thead>
@@ -15,8 +16,8 @@
   <tr>
       <th scope="row"><?php echo $Order['OrderID']; ?></th>
       <td><?php echo $Order['Address']; ?></td>
-      <td><?php echo $Order['DateCreated']; ?></td>
-      <td><?php echo $Order['TotalPrice']; ?></td>
+      <td><?php echo date("d M Y h:i A",strtotime($Order['DateCreated'])); ?></td>
+      <td>Rs. <?php echo number_format($Order['TotalPrice'],0); ?></td>
       <td><a data-id=<?php echo $Order['OrderID']; ?>>Details</a></td>
     </tr>
     <?php endforeach; ?>
