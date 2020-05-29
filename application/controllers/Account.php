@@ -65,5 +65,14 @@ class Account extends CI_Controller
                 }
             }
         }
+   
+    }
+    public function Signout(){
+        $this->session->unset_userdata('UserID');
+        $this->session->unset_userdata('FullName');
+        $this->session->unset_userdata('Email');
+        $this->session->unset_userdata('Address');
+        $this->session->unset_userdata('Loggedin');
+        redirect("Account/SignIn");
     }
 }

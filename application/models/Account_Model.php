@@ -11,7 +11,7 @@ class Account_Model extends CI_Model
             'Status' => 'Active'
         );
         $this->db->where($data);
-        $this->db->select('FullName,Email,Role');
+        $this->db->select('UserID,FullName,Email,Role');
         $que = $this->db->get('User');
         if ($que->num_rows() > 0) {
             return $que->row_array();
@@ -39,4 +39,6 @@ class Account_Model extends CI_Model
         $res = $this->db->insert('User', $data);
         return $res;
     }
+
 }
+?>

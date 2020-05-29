@@ -8,20 +8,60 @@ class User extends CI_Controller
         if (!$this->session->userdata('Loggedin')) {
             redirect('Account/SignIn');
         }
+        $this->load->model('Order_Model');
     }
     public function Index()
     {
-        redirect('User/Order');
+        redirect('User/History');
+    }
+    public function History(){
+       $data['Content'] = 'User/History';
+       $data['Title'] = 'Order Details';
+       $data['Orders']=$this->Order_Model->GetUserOrders($this->session->userdata('UserID'));
+       $this->load->view('Shared/UserLayout', $data);
     }
 
     public function Order()
     {
-        $data['Content'] = 'User/Order';
-        $data['Title'] = 'New Order';
-        $data['User']=$this->Account_Model->GetUserDetails($this->session->userdata('Email'));
- 
-        $data['Products'] = $this->Product_Model->GetActiveProducts();
-        $this->load->view('Shared/Layout', $data);
+        $this->form_validation->set_rules('AddressTxt', 'Address', 'required|trim|min_length[3]|xss_clean');
+      
+        if ($this->form_validation->run() == FALSE){
+            $data['Content'] = 'User/Order';
+            $data['Title'] = 'New Order';
+            $data['User']=$this->Account_Model->GetUserDetails($this->session->userdata('Email'));
+            $data['Products'] = $this->Product_Model->GetActiveProducts();
+            $this->load->view('Shared/Layout', $data);
+        }
+        else{
+            $Cart=$this->session->userdata('Cart');
+            $desc=$this->input->post('DescTxt');
+            $data=array(
+               'UserID'     =>  $this->session->userdata('UserID'),
+               'Email'      =>  $this->session->userdata('Email'),
+               'Address'    =>  $this->input->post('AddressTxt'),
+            );
+            if($desc!=null){
+                $data=$data+array(
+                    'Description'   =>  $desc
+                );
+            }
+            $subt=0;
+            foreach($Cart as $Item){
+                $subt+=($Item['Qty']*$Item['Price']);
+            }            
+            $data=$data+array(
+                'SubTotal' => $subt,
+                'Discount' => 0.0,
+                'TotalPrice' =>$subt
+            );
+            if($this->Order_Model->AddOrder($data,$Cart)){
+                print_r("Order Placed");
+                $this->session->unset_userdata('Cart');
+            }
+            else{
+                print_r('Error occured');
+            }
+        }
     }
 
     public function RemoveFromCart($id = null)
@@ -36,8 +76,8 @@ class User extends CI_Controller
             redirect("User/Order");
         } else {
             $temp = $this->session->userdata('Cart');
-            if (array_search($id, array_column($temp, 'ID')) !== false) {
-                $key = array_search($id, array_column($temp, 'ID'));
+            if (array_search($id, array_column($temp, 'ProductID')) !== false) {
+                $key = array_search($id, array_column($temp, 'ProductID'));
 
                 if ($key != null) {
                     unset($temp[$key]);
@@ -72,7 +112,8 @@ class User extends CI_Controller
         } else {
             $address=$this->input->post('AddressTxt');
             $desc=$this->input->post('DescTxt');
-            $customerid=$data['user']['UserID'];
+            $User=$this->session->user_data('UserID');
+            $customerid=$User;
             $subtotal=$_POST['Subtotal'];
             $discount=0;
             $total=$subtotal-$discount;
@@ -100,8 +141,8 @@ class User extends CI_Controller
 
             $temp = $this->session->userdata('Cart');
             // if (in_array($id, $temp['ID'])) {
-            if (array_search($id, array_column($temp, 'ID')) !== false) {
-                $key = array_search($id, array_column($temp, 'ID'));
+            if (array_search($id, array_column($temp, 'ProductID')) !== false) {
+                $key = array_search($id, array_column($temp, 'ProductID'));
                 if ($key != null) {
                     $temp[$key]['Qty'] = $temp[$key]['Qty'] + 1;
                 } else if ($key == 0) {
@@ -109,7 +150,7 @@ class User extends CI_Controller
                 }
             } else {
                 array_push($temp, array(
-                    'ID'    =>  $id,
+                    'ProductID'    =>  $id,
                     'Name'  =>  $name,
                     'Price' =>  $price,
                     'Qty'   =>  1
@@ -124,7 +165,7 @@ class User extends CI_Controller
     {
         $array = array(
             array(
-                'ID'    =>  $id,
+                'ProductID'    =>  $id,
                 'Name'  =>  $name,
                 'Price' =>  $price,
                 'Qty'   =>  1
@@ -132,4 +173,6 @@ class User extends CI_Controller
         );
         $this->session->set_userdata('Cart', $array);
     }
+    
+   
 }

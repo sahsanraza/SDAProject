@@ -42,7 +42,7 @@
                             <td><?php echo $CItem['Price'];
                                 $subt = $CItem['Price'] * $CItem['Qty']; ?></td>
                             <td name="Subtotal"><?php echo $subt ?></td>
-                            <td><a href="javascript:;" data-action="RemoveFromCart" data-id="<?php echo $CItem['ID']; ?>" class="badge badge-danger btn-check">Remove</a></td>
+                            <td><a href="javascript:;" data-action="RemoveFromCart" data-id="<?php echo $CItem['ProductID']; ?>" class="badge badge-danger btn-check">Remove</a></td>
                         </tr>
                     <?php $i++;
                         $total = $total + $subt;
@@ -67,26 +67,49 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <?php echo form_open(); ?>
             <div class="modal-body" style="background-color: #778ca3; color:#f5f6fa">
-                <form id="checkOutForm">
                     <div class="form-group">
                         <label for="EmailTxt" class="col-form-label">Email:</label>
-                        <input type="text" class="form-control" id="EmailTxt" name="EmailTxt" readonly="" value="<?php echo $User['Email'];?>">
+                        <input type="text" class="form-control" id="EmailTxt" name="EmailTxt" readonly="" value="<?php echo $User['Email']; ?>">
                     </div>
                     <div class="form-group">
-                        <label for="AddressTxt" class="col-form-label">Address:</label>
-                        <input type="text" class="form-control" id="AddressTxt" name="AddressTxt" value="<?php echo $User['Address'];?>"/>
+                    <?php
+                        echo form_label('Address', 'AddressTxt');
+                        $data = array(
+                            'name' => 'AddressTxt',
+                            'id'    => 'AddressTxt',
+                            'class' => 'form-control',
+                            'value' => $User['Address'],
+                        );
+                        echo form_input($data);
+                       ?>
                     </div>
                     <div class="form-group">
-                        <label for="DescTxt" class="col-form-label">Description:</label>
-                        <textarea class="form-control" id="DescTxt" placeholder="Anything you want to say, related to order."></textarea>
+                        <?php
+                        echo form_label('Description', 'DescTxt');
+                        $data = array(
+                            'name' => 'DescTxt',
+                            'id'    => 'DescTxt',
+                            'class' => 'form-control',
+                            'placeholder' => 'Anything you want to say, related to order.',
+                            'rows'  => '4'
+
+                        );
+                        echo form_textarea($data);
+                        ?>
+                        <!-- <label for="DescTxt" class="col-form-label">Description:</label> -->
+
+                        <!-- <textarea class="form-control" id="DescTxt" placeholder="Anything you want to say, related to order."></textarea> -->
                     </div>
-                </form>
+              
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Confirm Order</button>
+
+                <button type="submit" class="btn btn-success">Confirm Order</button>
             </div>
+            <?php echo form_close(); ?>
         </div>
     </div>
 </div>
