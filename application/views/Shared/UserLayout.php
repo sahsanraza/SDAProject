@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title><?php echo $Title; ?></title>
 </head>
-
-<body style="background-color: #778ca3; color:#f5f6fa ">
+<!-- #778ca3; color:#f5f6fa -->
+<body >
   <nav class="navbar navbar-expand-lg navbar-dark bg-default" style="background-color: #353b48">
     <a class="navbar-brand" href="#">Inventory Management System</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@
         confirmButtonText: 'Yes'
       }).then((result) => {
         if (result.value) {
-          window.location.replace('<?php echo site_url("User/Order/"); ?>' + id);
+          window.location.replace('<?php echo site_url("User/"); ?>' + funct + "/" + id);
         }
       });
     });

@@ -42,7 +42,7 @@
                             <td><?php echo $CItem['Price'];
                                 $subt = $CItem['Price'] * $CItem['Qty']; ?></td>
                             <td name="Subtotal"><?php echo $subt ?></td>
-                            <td><a href="javascript:;" data-action="RemoveFromCart" data-id="<?php echo $CItem['ProductID']; ?>" class="badge badge-danger btn-check">Remove</a></td>
+                            <td><a href="javascript:;" data-action="RemoveFromCart" data-id="<?php echo $CItem['ProductID']; ?>" class="badge badge-danger btn-check btn-delete">Remove</a></td>
                         </tr>
                     <?php $i++;
                         $total = $total + $subt;

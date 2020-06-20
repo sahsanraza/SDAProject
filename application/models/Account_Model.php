@@ -17,6 +17,22 @@ class Account_Model extends CI_Model
             return $que->row_array();
         }
     }
+    public function UpdateUser($data, $id)
+    {
+        $this->db->trans_start();
+        $this->db->where('UserID', $id);
+        $this->db->update('User', $data);
+        $this->db->trans_complete();
+        return $this->db->trans_status();
+    }
+    public function GetUserInfo($id){
+        $this->db->select('UserID,FullName,Email,Address');
+        $this->db->where('UserID',$id);
+        $q=$this->db->get('User');
+        if ($q->num_rows() > 0) {
+            return $q->first_row('array');
+        }
+    }
     public function GetUserDetails($email){
         $this->db->select('UserID,FullName,Email,Address');
         $this->db->where('Email',$email);
@@ -25,7 +41,12 @@ class Account_Model extends CI_Model
             return $q->first_row('array');
         }
     }
-
+    public function GetUsers(){
+            $q=$this->db->get('User');
+            if ($q->num_rows() > 0) {
+                return $q->result_array();
+            }
+    }
     public function Signup($name, $email, $pass, $add, $phone)
     {
 

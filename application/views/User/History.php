@@ -18,7 +18,7 @@
       <td><?php echo $Order['Address']; ?></td>
       <td><?php echo date("d M Y h:i A",strtotime($Order['DateCreated'])); ?></td>
       <td>Rs. <?php echo number_format($Order['TotalPrice'],0); ?></td>
-      <td><a data-id=<?php echo $Order['OrderID']; ?>>Details</a></td>
+      <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('User/OrderDetail/'.$Order['OrderID']);?>">View Order</a></td>
     </tr>
     <?php endforeach; ?>
    

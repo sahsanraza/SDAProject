@@ -8,7 +8,7 @@
   <title><?php echo $Title; ?></title>
 </head>
 
-<body style="background-color: #778ca3; color:#f5f6fa ">
+<body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-default" style="background-color: #353b48">
     <a class="navbar-brand" href="#">Inventory Management System</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,12 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo site_url("Admin/Products"); ?>">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo site_url("Admin/AllOrders"); ?>">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo site_url("Admin/AllUsers"); ?>">Users</a>
         </li>
       </ul>
     </div>
@@ -55,7 +61,6 @@
 
     $('.btn-check').on('click', function() {
       var id = $(this).attr('data-id');
-      var funct = $(this).attr('data-action');
       Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -66,7 +71,7 @@
         confirmButtonText: 'Yes'
       }).then((result) => {
         if (result.value) {
-          window.location.replace('<?php echo site_url("User/"); ?>' + funct + "/" + id);
+          window.location.replace('<?php echo site_url("Admin/UpdateUserStatus/"); ?>'+ id);
         }
       });
     });

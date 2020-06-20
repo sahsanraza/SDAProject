@@ -59,14 +59,30 @@ class User extends CI_Controller
                 'Discount' => 0.0,
                 'TotalPrice' =>$subt
             );
-            if($this->Order_Model->AddOrder($data,$Cart)){
-                print_r("Order Placed");
+            $resultid=$this->Order_Model->AddOrder($data,$Cart);
+            if($resultid>0){
+                
                 $this->session->unset_userdata('Cart');
+                $this->session->set_flashdata('OrderSuccess','Thank you. Your order has been placed successfully!');
+                redirect('User/OrderDetail/'.$resultid);
+
             }
             else{
-                print_r('Error occured');
-            }
+                redirect('User/Index');
+                        }
         }
+    }
+    public function OrderDetail($id){
+        if ($id == null) {
+            redirect('User/Order');
+        }
+        if (empty($this->Order_Model->OrderInfo($id))) {
+            redirect("User/Order");
+        }
+        $data['Order']=$this->Order_Model->OrderInfo($id);
+        $data['Content'] = 'User/OrderDetail';
+        $data['Title'] = 'Order # '.$id;
+        $this->load->view('Shared/UserLayout', $data);
     }
 
     public function RemoveFromCart($id = null)
@@ -102,33 +118,30 @@ class User extends CI_Controller
         }
         redirect("User/Order");
     }
-    public function ConfirmOrder($email=null){
-        if ($email == null) {
-            redirect('User/Order');
-        }
-        /*if (!$this->Account_Model->GetUserDetails()) {
-            redirect("User/Order");
-        }*/
-        $this->form_validation->set_rules('Address', 'Address', 'required|trim|min_length[3]|xss_clean');
-        if ($this->form_validation->run() == FALSE) {
-            $data['Content'] = "User/ConfirmOrder";
-            $data['Title'] = "ConfirmOrder";
-            $this->load->view('Shared/Layout', $data);
-        } else {
-            $address=$this->input->post('AddressTxt');
-            $desc=$this->input->post('DescTxt');
-            $User=$this->session->user_data('UserID');
-            $customerid=$User;
-            $subtotal=$_POST['Subtotal'];
-            $discount=0;
-            $total=$subtotal-$discount;
-            $q=$this->User_Model->AddOrder($customerid,$email,$address,$desc,$subtotal,$total);
-           //To be continued..
-        }
-      
-
-
-    }
+    // public function ConfirmOrder($email=null){
+    //     if ($email == null) {
+    //         redirect('User/Order');
+    //     }
+    //     /*if (!$this->Account_Model->GetUserDetails()) {
+    //         redirect("User/Order");
+    //     }*/
+    //     $this->form_validation->set_rules('Address', 'Address', 'required|trim|min_length[3]|xss_clean');
+    //     if ($this->form_validation->run() == FALSE) {
+    //         $data['Content'] = "User/ConfirmOrder";
+    //         $data['Title'] = "ConfirmOrder";
+    //         $this->load->view('Shared/Layout', $data);
+    //     } else {
+    //         $address=$this->input->post('AddressTxt');
+    //         $desc=$this->input->post('DescTxt');
+    //         $User=$this->session->user_data('UserID');
+    //         $customerid=$User;
+    //         $subtotal=$_POST['Subtotal'];
+    //         $discount=0;
+    //         $total=$subtotal-$discount;
+    //         $q=$this->User_Model->AddOrder($customerid,$email,$address,$desc,$subtotal,$total);
+    //        //To be continued..
+    //     }
+    // }
     public function AddtoCart($id = null)
     {
         if ($id == null) {
