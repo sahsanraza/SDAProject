@@ -9,7 +9,7 @@
     <?php if (!empty($Users)) : ?>
       <div class="table-responsive">
         <table class="table table-hover">
-            <thead>
+            <thead  class="bg-dark text-white">
                 <tr>
                     <th scope="col">User ID</th>
                     <th scope="col">Name</th>

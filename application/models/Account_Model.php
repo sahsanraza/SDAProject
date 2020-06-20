@@ -17,6 +17,7 @@ class Account_Model extends CI_Model
             return $que->row_array();
         }
     }
+    
     public function UpdateUser($data, $id)
     {
         $this->db->trans_start();

@@ -30,7 +30,7 @@
             <?php
             $array = array(
                 'Name' => 'AddProduct',
-                'class' => 'btn btn-outline-light btn-block',
+                'class' => 'btn btn-outline-dark btn-block',
                 'value' => 'Add Product'
             );
             echo form_submit($array);
