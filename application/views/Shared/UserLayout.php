@@ -37,6 +37,9 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo site_url("User/History"); ?>">Orders</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo site_url("User/Complain"); ?>">Complain</a>
+        </li>
 
       </ul>
       <form class="form-inline my-2 my-lg-0">
