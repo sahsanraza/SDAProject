@@ -7,8 +7,19 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title><?php echo $Title; ?></title>
 </head>
+<style>
+  .site-footer {
+    background-repeat: no-repeat;
+    background-position: center top;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+</style>
 <!-- #778ca3; color:#f5f6fa -->
-<body >
+
+<body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-default" style="background-color: #353b48">
     <a class="navbar-brand" href="#">Inventory Management System</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,17 +37,19 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo site_url("User/History"); ?>">Orders</a>
         </li>
-    
+
       </ul>
       <form class="form-inline my-2 my-lg-0">
-          <a  class="nav-item justify-content-end text-white" href="<?php echo site_url("Account/Signout"); ?>">Signout</a>
-        </form>
+        <a class="nav-item justify-content-end text-white" href="<?php echo site_url("Account/Signout"); ?>">Signout</a>
+      </form>
     </div>
   </nav>
   <div class="container-fluid mt-5">
     <?php $this->load->view($Content); ?>
   </div>
-
+  <footer class="text-center site-footer">
+        Copyright &copy; 2020 Syed Ahsan Raza. All Rights Reserved.
+    </footer>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -59,8 +72,6 @@
         }
       });
     });
-
-    
   </script>
 
 </body>

@@ -16,7 +16,7 @@ class Admin extends CI_Controller
     }
     public function Index()
     {
-        $data['Content'] = 'User/Home';
+        $data['Content'] = 'Admin/Dashboard';
         $data['Title'] = 'IMS';
         $this->load->view('Shared/Layout', $data);
     }

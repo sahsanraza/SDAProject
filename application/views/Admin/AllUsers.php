@@ -45,7 +45,7 @@
                         </td>
                         <td>
                         <?php
-                          
+                           echo form_open('Admin/UpdateUserStatus/'.$User['UserID']);
                            $opts = [
                                 'Active'  => 'Active',
                                 'Deleted'    => 'Deleted',
@@ -53,13 +53,12 @@
                             echo form_dropdown('Status',$opts,$User['Status']);
                             $data=array(
                                 'name'=>'UpdateStatus',
-                                'content'=>'Change',
-                                'data-id'=>$User['UserID'],
+                                'value'=>'Change',
                                 'id'=>'StatusBtn',
-                                'class'=>'btn btn-sm btn-danger btn-check'
+                                'class'=>'btn btn-sm btn-danger'
                             );
-                            echo form_button($data);
-                            
+                            echo form_submit($data);
+                            echo form_close();
                             ?>
                         </td>
                     </tr>
