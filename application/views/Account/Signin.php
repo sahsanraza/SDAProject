@@ -1,5 +1,5 @@
 <?php
-echo form_open('Account/SignIn');
+echo form_open();
 ?>
 
 <div class="form-group">
