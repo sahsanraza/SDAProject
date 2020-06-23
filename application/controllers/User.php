@@ -228,4 +228,16 @@ class User extends CI_Controller
         );
         $this->session->set_userdata('Cart', $array);
     }
+
+    private function BundleOffers()
+    {$data['Content'] = 'User/BundleOffers';
+        $data['Title'] = 'Bundle Offers Available';
+        $data['Bundles']=$this->Bundles_Model->GetBundles();
+       $this->load->view('Shared/UserLayout', $data);
+       //redirect("User/BundleOffers");
+
+    }
+
+    
+
 }
