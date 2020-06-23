@@ -22,7 +22,8 @@ Bundles Section
                             <h5 class="card-title">Bundle Name : <?php echo $Item['BundleName']; ?></h5>
                             <p class="card-text">Product Name :<?php echo $Item['ProductName']; ?></p>
                             <p class="card-text">Price : Rs. <?php echo $Item['Price']; ?></p>
-                            <a href="<?php echo site_url('User/BuyBundle/') . $Item['BundleID']; ?>" class="btn btn-secondary btn-block" style="background-color: #f5f6fa; color: #4b6584" >Buy</a>
+
+                            <a href="<?php echo site_url('User/BuyBundle/') . $Item['BundleID']; ?>" class="btn btn-secondary btn-block" style="background-color: #f5f6fa; color: #4b6584" onclick="alert()">Buy</a>
                         </div>
                     </div>
                 </div>
@@ -31,5 +32,6 @@ Bundles Section
         </div>
     </div>
 </div>    
+
 
 

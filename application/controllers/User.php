@@ -240,7 +240,7 @@ class User extends CI_Controller
     }
 
     public function BuyBundle($bundleid){
-        echo '<script language="javascript">alert("You have bought a Bundle , ' +$this->session->userdata('FullName') +' .");</script>';
+        // print '<script language="javascript">alert("You have bought a Bundle , ' +$this->session->userdata('FullName') +' .");</script>';
         $this->Bundle_Model->buybundle($bundleid,$this->session->userdata('UserID'));
         $data['Content'] = 'User/BundlesOffers';
         $data['Title'] = 'Bundle Offers Available';
