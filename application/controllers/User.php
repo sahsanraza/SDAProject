@@ -13,6 +13,7 @@ class User extends CI_Controller
         }
         $this->load->model('Order_Model');
         $this->load->model('Complain_Model');
+        $this->load->model('Bundle_Model');
     }
     public function Index()
     {
@@ -229,15 +230,25 @@ class User extends CI_Controller
         $this->session->set_userdata('Cart', $array);
     }
 
-    private function BundleOffers()
-    {$data['Content'] = 'User/BundleOffers';
+    public function BundleOffers()
+    {$data['Content'] = 'User/BundlesOffers';
         $data['Title'] = 'Bundle Offers Available';
-        $data['Bundles']=$this->Bundles_Model->GetBundles();
+        $data['Bundles']=$this->Bundle_Model->GetBundles();
        $this->load->view('Shared/UserLayout', $data);
        //redirect("User/BundleOffers");
 
     }
 
-    
+    public function BuyBundle($bundleid){
+        echo '<script language="javascript">alert("You have bought a Bundle , ' +$this->session->userdata('FullName') +' .");</script>';
+        $this->Bundle_Model->buybundle($bundleid,$this->session->userdata('UserID'));
+        $data['Content'] = 'User/BundlesOffers';
+        $data['Title'] = 'Bundle Offers Available';
+        $data['Bundles']=$this->Bundle_Model->GetBundles();
+        
+        $this->load->view('Shared/UserLayout', $data);
+
+
+    }
 
 }
