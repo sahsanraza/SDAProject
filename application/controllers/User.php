@@ -20,6 +20,13 @@ class User extends CI_Controller
         $data['Title'] = 'IMS';
         $this->load->view('Shared/UserLayout', $data);
     }
+    public function AllComplains(){
+        $email=$this->session->userdata('Email');
+       $data['Complains']=$this->Complain_Model->GetAllComplains($email);
+        $data['Content'] = 'User/ComplainDetails';
+        $data['Title'] = 'Complain History';
+        $this->load->view('Shared/UserLayout', $data);
+    }
     public function Complain()
     {
         $this->form_validation->set_rules('EmailTxt', 'Email address', 'required');
@@ -47,6 +54,7 @@ class User extends CI_Controller
             else{
                 $this->session->set_flashdata('perror',"An error occured");
             }
+            redirect('User/Complain');
         }
     }
     public function History()

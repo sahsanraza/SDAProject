@@ -38,9 +38,11 @@
           <a class="nav-link" href="<?php echo site_url("User/History"); ?>">Orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("User/Complain"); ?>">Complain</a>
+          <a class="nav-link" href="<?php echo site_url("User/Complain"); ?>"> File Complain</a>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo site_url("User/AllComplains"); ?>">Complain History</a>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <a class="nav-item justify-content-end text-white" href="<?php echo site_url("Account/Signout"); ?>">Signout</a>

@@ -13,6 +13,15 @@
             return $q->result_array();
          }
      }
+     public function GetUserComplains($email)
+     {
+        $this->db->where('Email',$email);
+        $q= $this->db->get('Complains');
+         if ($q-> num_rows() > 0)
+         {
+            return $q->result_array();
+         }
+     }
      public function SetResponse($id, $response)
      {
          $this->db->where('ComplainID',$id);

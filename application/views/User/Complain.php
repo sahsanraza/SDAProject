@@ -1,16 +1,12 @@
 <div class="row">
+ 
+    
+    <div class="col-md-6 offset-3">
     <?php if ($this->session->flashdata('padded')) : ?>
         <div class="alert alert-success" role="alert">
             <?php echo $this->session->flashdata('padded'); ?>
         </div>
     <?php endif; ?>
-    <?php if ($this->session->flashdata('perror')) : ?>
-        <div class="alert alert-success" role="alert">
-            <?php echo $this->session->flashdata('perror'); ?>
-        </div>
-    <?php endif; ?>
-    
-    <div class="col-md-6 offset-3">
         <h2 class="mb-4">Orders</h2>
         <?php echo form_open(); ?>
         <div>

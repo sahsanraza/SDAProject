@@ -70,7 +70,7 @@
       </div>
     <?php else : ?>
         <div class="col-md-4 offset-4 text-center">
-            <h1>No Orders found! </h1>
+            <h1>No Users found! </h1>
         </div>
 
     <?php endif; ?>
