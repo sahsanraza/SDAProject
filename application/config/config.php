@@ -23,11 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-<<<<<<< HEAD
-$config['base_url'] = 'http://localhost/ims/';
-=======
 $config['base_url'] = 'http://localhost:8080/ims/';
->>>>>>> 2a2a50e9d59c5afd716af848f4dbbcd9c59d327b
 
 /*
 |--------------------------------------------------------------------------
