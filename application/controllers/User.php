@@ -22,7 +22,7 @@ class User extends CI_Controller
     }
     public function AllComplains(){
         $email=$this->session->userdata('Email');
-       $data['Complains']=$this->Complain_Model->GetAllComplains($email);
+       $data['Complains']=$this->Complain_Model->GetUserComplains($email);
         $data['Content'] = 'User/ComplainDetails';
         $data['Title'] = 'Complain History';
         $this->load->view('Shared/UserLayout', $data);

@@ -19,8 +19,12 @@
                             <th scope="row"><?php echo $Complain['ComplainID']; ?></th>
                             <td><?php echo $Complain['Subject']; ?></td>
                             <td><?php echo $Complain['Complain']; ?></td>
-                            <td> <?php $Complain['Response'] ?></td>
-                            <td>
+                            <?php if($Complain['Response']!=NULL):?>
+                            <td  style="width: 300px;"> <?php echo $Complain['Response'] ?></td>
+                          <?php else: ?>
+                            <td style="color:red;">No response yet.</td>
+                          <?php endif; ?>
+                          <td>
                                 <?php echo $Complain['Status']; ?>
                             </td>
                         </tr>
