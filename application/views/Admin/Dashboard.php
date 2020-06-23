@@ -15,15 +15,15 @@
 <br/>
 <hr class="mt-5"/>
 <div class="row text-center " style="color:darkslategray">
-    <div class="col-4">
+    <div class="col-4 myhover">
         <h1>Total Orders</h1>
         <h4 style="color: blue;">910</h4>
     </div>
-    <div class="col-4">
+    <div class="col-4 myhover">
         <h1>Pending Orders</h1>
         <h4 style="color:brown">540</h4>
     </div>
-    <div class="col-4">
+    <div class="col-4 myhover">
         <h1>Completed Orders</h1>
         <h4 style="color:green">370</h4>
     </div>

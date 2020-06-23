@@ -46,6 +46,18 @@ class Order_Model extends CI_Model
             return $q->result_array();
         }
     }
+    public function GetAllBundles()
+    {
+
+        $this->db->select('Bundles.BundleID,BundleName,Product.ProductID,ProductName,Bundledetails.Price,BundleDetails.Quantity,Discount,Total,bundles.Description,Status');
+        $this->db->from('BundleDetails');
+        $this->db->join('Bundles', 'Bundles.BundleID=BundleDetails.BundleID', 'inner');
+        $this->db->join('Product', 'Product.ProductID=BundleDetails.ProductID', 'inner');
+        $q = $this->db->get();
+        if ($q->num_rows() > 0) {
+            return $q;
+        }
+    }
 
     public function OrderInfo($id)
     {

@@ -12,12 +12,19 @@ class Admin extends CI_Controller
         if ($this->session->userdata('Role') != "Admin") {
             redirect("Error");
         }
+        $this->load->model('Complain_Model');
         $this->load->model('Order_Model');
     }
     public function Index()
     {
         $data['Content'] = 'Admin/Dashboard';
         $data['Title'] = 'IMS';
+        $this->load->view('Shared/Layout', $data);
+    }
+    public function AllComplains(){
+        $data['Complains']=$this->Complain_Model->GetAllComplains();
+        $data['Content'] = 'Admin/AllComplains';
+        $data['Title'] = 'Manage Complains';
         $this->load->view('Shared/Layout', $data);
     }
     public function AllOrders()
@@ -77,6 +84,40 @@ class Admin extends CI_Controller
         $data['Title'] = 'All Users';
         $this->load->view('Shared/Layout', $data);
 
+    }
+    public function UpdateResponse($id=null){
+        if ($id == null) {
+            redirect("Admin/AllComplains");
+        } else if (!$this->Complain_Model->ComplainInfo($id)) {
+            redirect("Admin/AllComplains");
+        } 
+        else {
+
+            $res = $this->input->post('Response');
+            $q = $this->Complain_Model->UpdateComplain(array('Response' => $res), $id);
+            if ($q) {
+                $this->session->set_flashdata('padded', 'The response has been submitted!');
+                redirect("Admin/AllComplains");
+            }
+        } 
+    }
+    public function UpdateComplainStatus($id = null)
+    {
+
+        if ($id == null) {
+            redirect("Admin/AllComplains");
+        } else if (!$this->Complain_Model->ComplainInfo($id)) {
+            redirect("Admin/AllComplains");
+        } 
+        else {
+
+            $status = $this->input->post('Status');
+            $q = $this->Complain_Model->UpdateComplain(array('Status' => $status), $id);
+            if ($q) {
+                $this->session->set_flashdata('padded', 'The Status has been updated!');
+                redirect("Admin/AllComplains");
+            }
+        }
     }
     public function UpdateOrderStatus($id = null)
     {
