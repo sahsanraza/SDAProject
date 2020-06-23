@@ -10,7 +10,9 @@
     .chart {
       height: 200px;
     }
-
+    .myhover:hover{
+      background-color: #ecf0f1;
+    }
     .inlineChart {
       float: left;
       width: 30%;
@@ -63,6 +65,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo site_url("Admin/AllUsers"); ?>">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo site_url("Admin/Bundles"); ?>">Bundles</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
