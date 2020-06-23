@@ -12,6 +12,7 @@ class User extends CI_Controller
             redirect("Error");
         }
         $this->load->model('Order_Model');
+        $this->load->model('Complain_Model');
     }
     public function Index()
     {
@@ -19,69 +20,105 @@ class User extends CI_Controller
         $data['Title'] = 'IMS';
         $this->load->view('Shared/UserLayout', $data);
     }
-    public function History(){
-       $data['Content'] = 'User/History';
-       $data['Title'] = 'Order Details';
-       $data['Orders']=$this->Order_Model->GetUserOrders($this->session->userdata('UserID'));
-       $this->load->view('Shared/UserLayout', $data);
+    public function AllComplains(){
+        $email=$this->session->userdata('Email');
+       $data['Complains']=$this->Complain_Model->GetUserComplains($email);
+        $data['Content'] = 'User/ComplainDetails';
+        $data['Title'] = 'Complain History';
+        $this->load->view('Shared/UserLayout', $data);
+    }
+    public function Complain()
+    {
+        $this->form_validation->set_rules('EmailTxt', 'Email address', 'required');
+        $this->form_validation->set_rules('SubjectTxt', 'Complain subject', 'required');
+        $this->form_validation->set_rules('CompTxt', 'Complain message', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $data['Content'] = 'User/Complain';
+            $data['Title'] = 'Complain';
+            $this->load->view('Shared/UserLayout', $data);
+        }
+        else{
+            $email=$this->input->post('EmailTxt');
+            $subject=$this->input->post('SubjectTxt');
+            $msg=$this->input->post('CompTxt');
+            $array=array(
+                'Email' =>$email,
+                'Subject'=>$subject,
+                'Complain'=>$msg
+            );
+            $q=$this->Complain_Model->AddComplain($array);
+            if ($q)
+            {
+                $this->session->set_flashdata('padded', "Complain submitted Successfully.");
+            }
+            else{
+                $this->session->set_flashdata('perror',"An error occured");
+            }
+            redirect('User/Complain');
+        }
+    }
+    public function History()
+    {
+        $data['Content'] = 'User/History';
+        $data['Title'] = 'Order Details';
+        $data['Orders'] = $this->Order_Model->GetUserOrders($this->session->userdata('UserID'));
+        $this->load->view('Shared/UserLayout', $data);
     }
 
     public function Order()
     {
         $this->form_validation->set_rules('AddressTxt', 'Address', 'required|trim|min_length[3]|xss_clean');
-      
-        if ($this->form_validation->run() == FALSE){
+
+        if ($this->form_validation->run() == FALSE) {
             $data['Content'] = 'User/Order';
             $data['Title'] = 'New Order';
-            $data['User']=$this->Account_Model->GetUserDetails($this->session->userdata('Email'));
+            $data['User'] = $this->Account_Model->GetUserDetails($this->session->userdata('Email'));
             $data['Products'] = $this->Product_Model->GetActiveProducts();
             $this->load->view('Shared/UserLayout', $data);
-        }
-        else{
-            $Cart=$this->session->userdata('Cart');
-            $desc=$this->input->post('DescTxt');
-            $data=array(
-               'UserID'     =>  $this->session->userdata('UserID'),
-               'Email'      =>  $this->session->userdata('Email'),
-               'Address'    =>  $this->input->post('AddressTxt'),
+        } else {
+            $Cart = $this->session->userdata('Cart');
+            $desc = $this->input->post('DescTxt');
+            $data = array(
+                'UserID'     =>  $this->session->userdata('UserID'),
+                'Email'      =>  $this->session->userdata('Email'),
+                'Address'    =>  $this->input->post('AddressTxt'),
             );
-            if($desc!=null){
-                $data=$data+array(
+            if ($desc != null) {
+                $data = $data + array(
                     'Description'   =>  $desc
                 );
             }
-            $subt=0;
-            foreach($Cart as $Item){
-                $subt+=($Item['Qty']*$Item['Price']);
-            }            
-            $data=$data+array(
+            $subt = 0;
+            foreach ($Cart as $Item) {
+                $subt += ($Item['Qty'] * $Item['Price']);
+            }
+            $data = $data + array(
                 'SubTotal' => $subt,
                 'Discount' => 0.0,
-                'TotalPrice' =>$subt
+                'TotalPrice' => $subt
             );
-            $resultid=$this->Order_Model->AddOrder($data,$Cart);
-            if($resultid>0){
-                
-                $this->session->unset_userdata('Cart');
-                $this->session->set_flashdata('OrderSuccess','Thank you. Your order has been placed successfully!');
-                redirect('User/OrderDetail/'.$resultid);
+            $resultid = $this->Order_Model->AddOrder($data, $Cart);
+            if ($resultid > 0) {
 
-            }
-            else{
+                $this->session->unset_userdata('Cart');
+                $this->session->set_flashdata('OrderSuccess', 'Thank you. Your order has been placed successfully!');
+                redirect('User/OrderDetail/' . $resultid);
+            } else {
                 redirect('User/Index');
-                        }
+            }
         }
     }
-    public function OrderDetail($id){
+    public function OrderDetail($id)
+    {
         if ($id == null) {
             redirect('User/Order');
         }
         if (empty($this->Order_Model->OrderInfo($id))) {
             redirect("User/Order");
         }
-        $data['Order']=$this->Order_Model->OrderInfo($id);
+        $data['Order'] = $this->Order_Model->OrderInfo($id);
         $data['Content'] = 'User/OrderDetail';
-        $data['Title'] = 'Order # '.$id;
+        $data['Title'] = 'Order # ' . $id;
         $this->load->view('Shared/UserLayout', $data);
     }
 
@@ -191,6 +228,4 @@ class User extends CI_Controller
         );
         $this->session->set_userdata('Cart', $array);
     }
-    
-   
 }

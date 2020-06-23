@@ -1,10 +1,11 @@
 <div class="row" style="padding:1% 5%">
-    <h2 class="mb-4">Orders</h2>
-    <?php if ($this->session->flashdata('padded')) : ?>
+<?php if ($this->session->flashdata('padded')) : ?>
         <div class="alert alert-success" role="alert">
             <?php echo $this->session->flashdata('padded'); ?>
         </div>
     <?php endif; ?>
+    <h2 class="mb-4">Orders</h2>
+  
     <?php if (!empty($Orders)) : ?>
         <div class="table-responsive">
             <table class="table table-hover ">

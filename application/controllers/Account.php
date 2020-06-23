@@ -3,11 +3,11 @@
 class Account extends CI_Controller
 {
 
-    public function Index(){
+    public function Index()
+    {
         if ($this->session->userdata('Loggedin')) {
             redirect("Admin/Products");
-        }
-        else{
+        } else {
             redirect("Account/SignIn");
         }
     }
@@ -62,10 +62,13 @@ class Account extends CI_Controller
                     redirect("User/");
                 }
             }
+            else{
+                $this->session->set_flashdata('error','Invalid email or password!');
+            }
         }
-   
     }
-    public function Signout(){
+    public function Signout()
+    {
         $this->session->unset_userdata('UserID');
         $this->session->unset_userdata('FullName');
         $this->session->unset_userdata('Email');
