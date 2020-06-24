@@ -21,6 +21,7 @@ class Admin extends CI_Controller
         $data['Title'] = 'IMS';
         $this->load->view('Shared/Layout', $data);
     }
+    public function Bundles(){
     public function AllComplains(){
         $data['Complains']=$this->Complain_Model->GetAllComplains();
         $data['Content'] = 'Admin/AllComplains';
