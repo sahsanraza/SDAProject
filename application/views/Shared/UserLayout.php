@@ -29,54 +29,17 @@
 <!-- #778ca3; color:#f5f6fa -->
 
 <body>
-<<<<<<< HEAD
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-  <a class="my-0 mr-md-auto font-weight-normal header" href="<?php echo site_url('User/Index'); ?>" title="Inventory Management System" data-toggle="tooltip">IMS</a>
+  <a  class="my-0 mr-md-auto header" href="<?php echo site_url('User/Index'); ?>" title="Inventory Management System" data-toggle="tooltip">IMS</a>
   <nav class="my-2 my-md-0 mr-md-3">
     <a class="p-2 text-dark" href="<?php echo site_url("User/Order"); ?>">New Order</a>
+    <a class="p-2 text-dark" href="<?php echo site_url("User/CartDisplay"); ?>">Cart</a>
     <a class="p-2 text-dark" href="<?php echo site_url("User/History"); ?>">Orders</a>
     <a class="p-2 text-dark" href="<?php echo site_url("User/Complain"); ?>"> File Complain</a>
     <a class="p-2 text-dark" href="<?php echo site_url("User/AllComplains"); ?>">Complain History</a>
     <a class="p-2 text-dark" href="<?php echo site_url("User/Bundles"); ?>">Deals</a>
     <a class="p-2 text-dark" href="<?php echo site_url("User/BundleOrderHistory"); ?>">Deals History</a>
     
-=======
-  <nav class="navbar navbar-expand-lg navbar-dark bg-default" style="background-color: #353b48">
-    <a class="navbar-brand" href="#">Inventory Management System</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="<?php echo site_url('User/Index'); ?>">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("User/Order"); ?>">New Order</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("User/History"); ?>">Orders</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("User/CartDisplay"); ?>">Cart</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("User/Complain"); ?>"> File Complain</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("User/AllComplains"); ?>">Complain History</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("User/BundleOffers"); ?>">Bundle Offers</a>
-        </li>
-        
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <a class="nav-item justify-content-end text-white" href="<?php echo site_url("Account/Signout"); ?>">Signout</a>
-      </form>
-    </div>
->>>>>>> 60551e3f1794c5746c870e373ecd6b97db8b9356
   </nav>
   <a class="btn btn-outline-danger" href="<?php echo site_url("Account/Signout"); ?>">Sign out</a>
 </div>
