@@ -1,37 +1,72 @@
-<h1>
-<!--  <php    
-foreach($Bundles->result() as $row)
-{
-each $row->bundles.BundleID.'<br>';
-
-}
-
->
--->
-Bundles Section
-</h1>
 <div class="row">
-    <div class="col-8">
-        <h2>Available Bundles</h2>
-        <div class="row mt-5">
-        bundles.BundleID,BundleName,product.ProductID,ProductName,bundledetails.Price,bundledetails.Quantity,Discount,Total,bundles.Description
-            <?php foreach ($Bundles as $Item) : ?>
-                <div class="col-3">
-                    <div class="card mb-3" style="background-color: #4b6584; color:#d1d8e0 ">
-                        <div class="card-body">
-                            <h5 class="card-title">Bundle Name : <?php echo $Item['BundleName']; ?></h5>
-                            <p class="card-text">Product Name :<?php echo $Item['ProductName']; ?></p>
-                            <p class="card-text">Price : Rs. <?php echo $Item['Price']; ?></p>
-
-                            <a href="<?php echo site_url('User/BuyBundle/') . $Item['BundleID']; ?>" class="btn btn-secondary btn-block" style="background-color: #f5f6fa; color: #4b6584" onclick="alert()">Buy</a>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-
+    <?php if ($this->session->flashdata('padded')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo $this->session->flashdata('padded'); ?>
         </div>
+    <?php endif; ?>
+    <div class="col-8 offset-2">
+        <?php if (!empty($Bundles)) : ?>
+            <h2>Available Deals</h2>
+            <div class="row mt-5">
+                <?php foreach ($Bundles as $Bundle) : ?>
+                    <div class="col-6">
+                        <div class="card mb-5" style="background-color: #c8d6e5; color:#d1d8e0 ">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead class="bg-dark text-white">
+                                            <tr class="rounded-top bg-info text-white text-center ">
+                                                <td colspan="3">
+                                                    <?php echo $Bundle['BundleName']; ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Quanity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($Bundle['Items'] as $Item) : ?>
+                                                <tr>
+                                                    <td><?php echo $Item['ProductName']; ?></td>
+                                                    <td><?php echo $Item['Price']; ?></td>
+                                                    <td><?php echo $Item['Quantity']; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                            <tr>
+                                                <th class="text-right">Original Price</th>
+                                                <td colspan="2">Rs. <?php echo $Bundle['Total'] + $Bundle['Discount']; ?> </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-right">Discount</th>
+                                                <td colspan="2">Rs. <?php echo $Bundle['Discount']; ?> </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-right">Sale Price</th>
+                                                <td colspan="2">Rs. <?php echo $Bundle['Total']; ?> </td>
+                                            </tr>
+                                            <tr style="height:80px;">
+                                                <th class="text-right">Description</th>
+                                                <td colspan="2"><?php echo $Bundle['Description']; ?> </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <a class="btn btn-block btn-success" href="<?php echo site_url('User/BuyBundle/' . $Bundle['BundleID']); ?>">Buy</a>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <h2>No deals available!</h2>
+            <?php endif; ?>
+            </div>
     </div>
-</div>    
-
-
-
