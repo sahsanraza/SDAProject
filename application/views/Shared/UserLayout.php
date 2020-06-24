@@ -43,6 +43,9 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo site_url("User/AllComplains"); ?>">Complain History</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo site_url("User/BundleOffers"); ?>">Bundle Offers</a>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <a class="nav-item justify-content-end text-white" href="<?php echo site_url("Account/Signout"); ?>">Signout</a>
