@@ -7,7 +7,7 @@
             <?php echo $this->session->flashdata('padded'); ?>
         </div>
     <?php endif; ?>
-        <h2 class="mb-4">Orders</h2>
+        <h2 class="mb-4">Complains</h2>
         <?php echo form_open(); ?>
         <div>
             <div class="form-group">

@@ -5,7 +5,6 @@
         </div>
     <?php endif; ?>
     <h2 class="mb-4">Complains</h2>
-
     <?php if (!empty($Complains)) : ?>
         <div class="table-responsive">
             <table class="table table-hover ">
