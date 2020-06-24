@@ -22,6 +22,11 @@ class Admin extends CI_Controller
         $this->load->view('Shared/Layout', $data);
     }
     public function Bundles(){
+        $data['Orders'] = $this->Order_Model->GetAllBundles();
+        $data['Content'] = 'Admin/AllOrders';
+        $data['Title'] = 'All Orders';
+        $this->load->view('Shared/Layout', $data);
+    }
     public function AllComplains(){
         $data['Complains']=$this->Complain_Model->GetAllComplains();
         $data['Content'] = 'Admin/AllComplains';
@@ -120,6 +125,7 @@ class Admin extends CI_Controller
             }
         }
     }
+
     public function UpdateOrderStatus($id = null)
     {
 
