@@ -61,9 +61,8 @@ class Account extends CI_Controller
                 } else {
                     redirect("User/");
                 }
-            }
-            else{
-                $this->session->set_flashdata('error','Invalid email or password!');
+            } else {
+                $this->session->set_flashdata('error', 'Invalid email or password!');
             }
         }
     }

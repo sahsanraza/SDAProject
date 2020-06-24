@@ -7,14 +7,14 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title><?php echo $Title; ?></title>
   <style>
-          
-
     .chart {
       height: 200px;
     }
-    .myhover:hover{
+
+    .myhover:hover {
       background-color: #ecf0f1;
     }
+
     .inlineChart {
       float: left;
       width: 30%;
@@ -53,7 +53,6 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -74,7 +73,6 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo site_url("Admin/Bundles"); ?>">Bundles</a>
         </li>
-       
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <a class="nav-item justify-content-end text-white" href="<?php echo site_url("Account/Signout"); ?>">Signout</a>
