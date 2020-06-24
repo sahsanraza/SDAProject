@@ -5,7 +5,7 @@
 
             <?php foreach ($Products as $Item) : ?>
                 <div class="col-3">
-                    <div class="card mb-3" style="background-color: #4b6584; color:#d1d8e0 ">
+                    <div class="card mb-3" style="background-color: #c8d6e5; color:#2f3640 ">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $Item['ProductName']; ?></h5>
                             <p class="card-text">Rs. <?php echo $Item['Price']; ?></p>
@@ -69,40 +69,40 @@
             </div>
             <?php echo form_open(); ?>
             <div class="modal-body" style="background-color: #778ca3; color:#f5f6fa">
-                    <div class="form-group">
-                        <label for="EmailTxt" class="col-form-label">Email:</label>
-                        <input type="text" class="form-control" id="EmailTxt" name="EmailTxt" readonly="" value="<?php echo $User['Email']; ?>">
-                    </div>
-                    <div class="form-group">
+                <div class="form-group">
+                    <label for="EmailTxt" class="col-form-label">Email:</label>
+                    <input type="text" class="form-control" id="EmailTxt" name="EmailTxt" readonly="" value="<?php echo $User['Email']; ?>">
+                </div>
+                <div class="form-group">
                     <?php
-                        echo form_label('Address', 'AddressTxt');
-                        $data = array(
-                            'name' => 'AddressTxt',
-                            'id'    => 'AddressTxt',
-                            'class' => 'form-control',
-                            'value' => $User['Address'],
-                        );
-                        echo form_input($data);
-                       ?>
-                    </div>
-                    <div class="form-group">
-                        <?php
-                        echo form_label('Description', 'DescTxt');
-                        $data = array(
-                            'name' => 'DescTxt',
-                            'id'    => 'DescTxt',
-                            'class' => 'form-control',
-                            'placeholder' => 'Anything you want to say, related to order.',
-                            'rows'  => '4'
+                    echo form_label('Address', 'AddressTxt');
+                    $data = array(
+                        'name' => 'AddressTxt',
+                        'id'    => 'AddressTxt',
+                        'class' => 'form-control',
+                        'value' => $User['Address'],
+                    );
+                    echo form_input($data);
+                    ?>
+                </div>
+                <div class="form-group">
+                    <?php
+                    echo form_label('Description', 'DescTxt');
+                    $data = array(
+                        'name' => 'DescTxt',
+                        'id'    => 'DescTxt',
+                        'class' => 'form-control',
+                        'placeholder' => 'Anything you want to say, related to order.',
+                        'rows'  => '4'
 
-                        );
-                        echo form_textarea($data);
-                        ?>
-                        <!-- <label for="DescTxt" class="col-form-label">Description:</label> -->
+                    );
+                    echo form_textarea($data);
+                    ?>
+                    <!-- <label for="DescTxt" class="col-form-label">Description:</label> -->
 
-                        <!-- <textarea class="form-control" id="DescTxt" placeholder="Anything you want to say, related to order."></textarea> -->
-                    </div>
-              
+                    <!-- <textarea class="form-control" id="DescTxt" placeholder="Anything you want to say, related to order."></textarea> -->
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -1,31 +1,44 @@
 <div class="row">
     <div class="col-md-4 offset-md-4 text-center">
-        <h1>Hello, <?php echo $this->session->userdata('FullName'); ?></h1>
+        <h1  style="color: #333; font-weight: 300;">Hello, <?php echo $this->session->userdata('FullName'); ?></h1>
     </div>
 </div>
 
 <div class="row mt-5">
     <div class="col-12 text-center mt-2">
-        <h3>Weekly Sales Report</h3>
+        <h4  style="color: #333; font-weight: 300;">Weekly Sales Report</h4>
         <div class="chart">
             <canvas id="c1" width="1000" height="200"></canvas>
         </div>
     </div>
 </div>
 <br/>
-<hr class="mt-5"/>
-<div class="row text-center " style="color:darkslategray">
+
+<hr class="mt-4" />
+<div class="row text-center " >
     <div class="col-4 myhover">
-        <h1>Total Orders</h1>
-        <h4 style="color: blue;">910</h4>
+        <div class="card">
+            <div class="card-body bg-info text-light">
+                <h5 class="card-title">Total Orders</h5>
+                <h2 class="badge badge-light ">910</h2>
+            </div>
+        </div>
     </div>
     <div class="col-4 myhover">
-        <h1>Pending Orders</h1>
-        <h4 style="color:brown">540</h4>
+    <div class="card">
+            <div class="card-body bg-warning">
+                <h5 class="card-title">Pending Orders</h5>
+                <h2 class="badge badge-light ">540</h2>
+            </div>
+        </div>
     </div>
     <div class="col-4 myhover">
-        <h1>Completed Orders</h1>
-        <h4 style="color:green">370</h4>
+        <div class="card">
+            <div class="card-body bg-success text-light">
+                <h5 class="card-title">Completed Orders</h5>
+                <h2 class="badge badge-light">370</h2>
+            </div>
+        </div>
     </div>
 </div>
 <hr />

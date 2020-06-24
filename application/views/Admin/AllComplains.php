@@ -4,9 +4,9 @@
             <?php echo $this->session->flashdata('padded'); ?>
         </div>
     <?php endif; ?>
-    <h2 class="mb-4">Complains</h2>
-
+   
     <?php if (!empty($Complains)) : ?>
+        <h2 class="mb-4">Complains</h2>
         <div class="table-responsive">
             <table class="table table-hover ">
                 <thead class="bg-dark text-white">

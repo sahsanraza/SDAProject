@@ -1,7 +1,12 @@
 <div class="row">
+    <?php if ($this->session->flashdata('padded')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo $this->session->flashdata('padded'); ?>
+        </div>
+    <?php endif; ?>
     <div class="col-8 offset-2">
         <?php if (!empty($Bundles)) : ?>
-            <h2>Bundles</h2>
+            <h2>Available Deals</h2>
             <div class="row mt-5">
                 <?php foreach ($Bundles as $Bundle) : ?>
                     <div class="col-6">
@@ -41,11 +46,18 @@
                                                 <th class="text-right">Sale Price</th>
                                                 <td colspan="2">Rs. <?php echo $Bundle['Total']; ?> </td>
                                             </tr>
-                                            <tr>
+                                            <tr style="height:80px;">
                                                 <th class="text-right">Description</th>
                                                 <td colspan="2"><?php echo $Bundle['Description']; ?> </td>
                                             </tr>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <a class="btn btn-block btn-success" href="<?php echo site_url('User/BuyBundle/' . $Bundle['BundleID']); ?>">Buy</a>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -54,7 +66,7 @@
                     </div>
                 <?php endforeach; ?>
             <?php else : ?>
-                <h2>No bundles added yet!</h2>
+                <h2>No deals available!</h2>
             <?php endif; ?>
             </div>
     </div>

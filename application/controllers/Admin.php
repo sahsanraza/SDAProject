@@ -14,6 +14,7 @@ class Admin extends CI_Controller
         }
         $this->load->model('Complain_Model');
         $this->load->model('Order_Model');
+        $this->load->model('Bundle_Model');
     }
     public function Index()
     {
@@ -22,9 +23,15 @@ class Admin extends CI_Controller
         $this->load->view('Shared/Layout', $data);
     }
     public function Bundles(){
-        $data['Orders'] = $this->Order_Model->GetAllBundles();
-        $data['Content'] = 'Admin/AllOrders';
-        $data['Title'] = 'All Orders';
+        $array = $this->Bundle_Model->GetAllBundles();
+        $result['Items']=array();
+        for($i=0;$i<count($array,0);$i++){
+            $result['Items']=$this->Bundle_Model->GetBundleItems($array[$i]['BundleID']);
+           $array[$i]=$array[$i]+$result;
+        }
+        $data['Bundles']=$array;
+        $data['Content'] = 'Admin/Bundles';
+        $data['Title'] = 'All Bundles';
         $this->load->view('Shared/Layout', $data);
     }
     public function AllComplains(){

@@ -44,52 +44,45 @@
       width: 100%;
       bottom: 0;
     }
+  .header{
+    color: #333;
+    font-weight: 700;
+  }
+  .card-body h2{
+    font-size: 3rem;
+  } .card-body h5{
+    font-size: 2rem;
+  }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-default" style="background-color: #353b48">
-    <a class="navbar-brand" href="#">Inventory Management System</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="<?php echo site_url('Admin/Index'); ?>">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("Admin/Products"); ?>">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("Admin/AllOrders"); ?>">Orders</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("Admin/AllUsers"); ?>">Users</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("Admin/AllComplains"); ?>">Complains</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("Admin/Bundles"); ?>">Bundles</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <a class="nav-item justify-content-end text-white" href="<?php echo site_url("Account/Signout"); ?>">Signout</a>
-      </form>
-    </div>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <a class="my-0 mr-md-auto font-weight-normal header" href="<?php echo site_url('User/Index'); ?>" title="Inventory Management System" data-toggle="tooltip">IMS</a>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="<?php echo site_url("Admin/Products"); ?>">Products</a>
+    <a class="p-2 text-dark" href="<?php echo site_url("Admin/AllOrders"); ?>">Orders</a>
+    <a class="p-2 text-dark" href="<?php echo site_url("Admin/AllUsers"); ?>">Users</a>
+    <a class="p-2 text-dark" href="<?php echo site_url("Admin/AllComplains"); ?>">Complaints</a>
+    <a class="p-2 text-dark" href="<?php echo site_url("Admin/Bundles"); ?>">Bundles</a>
   </nav>
+  <a class="btn btn-outline-danger" href="<?php echo site_url("Account/Signout"); ?>">Sign out</a>
+</div>
+ 
   <div class="container-fluid mt-5">
     <?php $this->load->view($Content); ?>
   </div>
   <footer class="text-center site-footer">
-    Copyright &copy; 2020 Syed Ahsan Raza. All Rights Reserved.
+    Copyright &copy; 2020 IMS. All Rights Reserved.
   </footer>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script type="text/javascript">
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  })
     $('.btn-delete').on('click', function() {
       var id = $(this).attr('data-id');
       var funct = $(this).attr('data-action');

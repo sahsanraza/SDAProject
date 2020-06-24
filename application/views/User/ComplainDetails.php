@@ -1,7 +1,8 @@
 <div class="row" style="padding:1% 5%">
-    <h2 class="mb-4">Complains</h2>
+   
 
     <?php if (!empty($Complains)) : ?>
+        <h2 class="mb-4">Complains</h2>
         <div class="table-responsive">
             <table class="table table-hover ">
                 <thead class="bg-dark text-white">
