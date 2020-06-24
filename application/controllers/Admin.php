@@ -22,18 +22,7 @@ class Admin extends CI_Controller
         $data['Title'] = 'IMS';
         $this->load->view('Shared/Layout', $data);
     }
-    public function Bundles(){
-        $array = $this->Bundle_Model->GetAllBundles();
-        $result['Items']=array();
-        for($i=0;$i<count($array,0);$i++){
-            $result['Items']=$this->Bundle_Model->GetBundleItems($array[$i]['BundleID']);
-           $array[$i]=$array[$i]+$result;
-        }
-        $data['Bundles']=$array;
-        $data['Content'] = 'Admin/Bundles';
-        $data['Title'] = 'All Bundles';
-        $this->load->view('Shared/Layout', $data);
-    }
+  
     public function AllComplains(){
         $data['Complains']=$this->Complain_Model->GetAllComplains();
         $data['Content'] = 'Admin/AllComplains';
@@ -131,6 +120,18 @@ class Admin extends CI_Controller
                 redirect("Admin/AllComplains");
             }
         }
+    }
+    public function Bundles(){
+        $array = $this->Bundle_Model->GetAllBundles();
+        $result['Items']=array();
+        for($i=0;$i<count($array,0);$i++){
+            $result['Items']=$this->Bundle_Model->GetBundleItems($array[$i]['BundleID']);
+           $array[$i]=$array[$i]+$result;
+        }
+        $data['Bundles']=$array;
+        $data['Content'] = 'Admin/Bundles';
+        $data['Title'] = 'All Bundles';
+        $this->load->view('Shared/Layout', $data);
     }
 
     public function UpdateOrderStatus($id = null)
