@@ -21,18 +21,7 @@ class User extends CI_Controller
         $data['Title'] = 'IMS';
         $this->load->view('Shared/UserLayout', $data);
     }
-    public function Bundles(){
-        $array = $this->Bundle_Model->GetAvailableBundles();
-        $result['Items']=array();
-        for($i=0;$i<count($array,0);$i++){
-            $result['Items']=$this->Bundle_Model->GetBundleItems($array[$i]['BundleID']);
-           $array[$i]=$array[$i]+$result;
-        }
-        $data['Bundles']=$array;
-        $data['Content'] = 'User/Deals';
-        $data['Title'] = 'All Bundles';
-        $this->load->view('Shared/UserLayout', $data);
-    }
+
     public function CartDisplay()
     {
         $this->form_validation->set_rules('AddressTxt', 'Address', 'required|trim|min_length[3]|xss_clean');
