@@ -4,11 +4,7 @@
             <?php echo $this->session->flashdata('padded'); ?>
         </div>
     <?php endif; ?>
-<<<<<<< HEAD
    
-=======
-    <h2 class="mb-4">Complains</h2>
->>>>>>> 60551e3f1794c5746c870e373ecd6b97db8b9356
     <?php if (!empty($Complains)) : ?>
         <h2 class="mb-4">Complains</h2>
         <div class="table-responsive">

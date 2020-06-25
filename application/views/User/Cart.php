@@ -35,7 +35,7 @@
             </table>
         </div>
     <?php else : ?>
-        <h2> Your cart is empty! </h2>
+        <h3 class="text-center text-danger"> Your cart is empty! </h3>
     <?php endif; ?>
     <?php if ($this->session->userdata('Cart')) : ?>
         <p class="badge badge-light" style="font-size: 1.5em; font-family: Roboto;"><strong>Subtotal</strong>: Rs. <?php echo $total; ?></p>

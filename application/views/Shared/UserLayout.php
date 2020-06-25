@@ -30,9 +30,10 @@
 
 <body>
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-  <a class="my-0 mr-md-auto font-weight-normal header" href="<?php echo site_url('User/Index'); ?>" title="Inventory Management System" data-toggle="tooltip">IMS</a>
+  <a  class="my-0 mr-md-auto header" href="<?php echo site_url('User/Index'); ?>" title="Inventory Management System" data-toggle="tooltip">IMS</a>
   <nav class="my-2 my-md-0 mr-md-3">
     <a class="p-2 text-dark" href="<?php echo site_url("User/Order"); ?>">New Order</a>
+    <a class="p-2 text-dark" href="<?php echo site_url("User/CartDisplay"); ?>">Cart</a>
     <a class="p-2 text-dark" href="<?php echo site_url("User/History"); ?>">Orders</a>
     <a class="p-2 text-dark" href="<?php echo site_url("User/Complain"); ?>"> File Complain</a>
     <a class="p-2 text-dark" href="<?php echo site_url("User/AllComplains"); ?>">Complain History</a>
