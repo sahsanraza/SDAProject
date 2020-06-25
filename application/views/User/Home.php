@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body bg-info text-light">
                 <h5 class="card-title">Total Orders</h5>
-                <h2 class="badge badge-light ">910</h2>
+                <h2 class="badge badge-light ">25</h2>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
     <div class="card">
             <div class="card-body bg-warning">
                 <h5 class="card-title">Pending Orders</h5>
-                <h2 class="badge badge-light ">540</h2>
+                <h2 class="badge badge-light ">2</h2>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
         <div class="card">
             <div class="card-body bg-success text-light">
                 <h5 class="card-title">Completed Orders</h5>
-                <h2 class="badge badge-light">370</h2>
+                <h2 class="badge badge-light">23</h2>
             </div>
         </div>
     </div>

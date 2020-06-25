@@ -309,7 +309,18 @@ class User extends CI_Controller
         }
         redirect("User/Order");
     }
-
+    public function Bundles(){
+        $array = $this->Bundle_Model->GetAvailableBundles();
+        $result['Items']=array();
+        for($i=0;$i<count($array,0);$i++){
+            $result['Items']=$this->Bundle_Model->GetBundleItems($array[$i]['BundleID']);
+           $array[$i]=$array[$i]+$result;
+        }
+        $data['Bundles']=$array;
+        $data['Content'] = 'User/Deals';
+        $data['Title'] = 'All Bundles';
+        $this->load->view('Shared/UserLayout', $data);
+    }
     private function InitCart($id, $price, $name)
     {
         $array = array(

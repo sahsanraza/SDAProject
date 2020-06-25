@@ -8,6 +8,7 @@ echo form_open();
 ?>
 
 <div class="form-group">
+<h2>Sign In</h2>
     <?php echo form_label("Email Address", "Email");
     $array = array(
         'id' => 'Email',

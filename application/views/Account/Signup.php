@@ -1,6 +1,7 @@
 <?php
 echo form_open('Account/Signup');
 ?>
+<h2>Sign Up</h2>
 <div class="form-group">
     <?php echo form_label("Full Name", "FullName");
     $array = array(
