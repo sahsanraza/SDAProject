@@ -29,7 +29,7 @@ class User extends CI_Controller
            $array[$i]=$array[$i]+$result;
         }
         $data['Bundles']=$array;
-        $data['Content'] = 'User/Bundles';
+        $data['Content'] = 'User/Deals';
         $data['Title'] = 'All Bundles';
         $this->load->view('Shared/UserLayout', $data);
     }

@@ -6,18 +6,23 @@ class Account extends CI_Controller
     public function Index()
     {
         if ($this->session->userdata('Loggedin')) {
-            redirect("Admin/Products");
+            if($this->session->userdata('Role')=="Admin"){
+                redirect('Admin/');
+            }else{
+                redirect("User/");
+            }
+            
         } else {
             redirect("Account/SignIn");
         }
     }
 
-    public function Login()
-    {
-        $data['Content'] = 'Account/Login';
-        $data['Title'] = 'Sign in';
-        $this->load->view('Shared/AuthLayout', $data);
-    }
+    // public function Login()
+    // {
+    //     $data['Content'] = 'Account/Login';
+    //     $data['Title'] = 'Sign in';
+    //     $this->load->view('Shared/AuthLayout', $data);
+    // }
     public function Signup()
     {
         $this->form_validation->set_rules('FullName', 'Full Name', 'required|trim|min_length[3]|max_length[30]|xss_clean');
