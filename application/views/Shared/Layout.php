@@ -44,31 +44,40 @@
       width: 100%;
       bottom: 0;
     }
-  .header{
-    color: #333;
-    font-weight: 700;
-  }
-  .card-body h2{
-    font-size: 3rem;
-  } .card-body h5{
-    font-size: 2rem;
-  }
+
+    .header {
+      color: #333;
+      font-weight: 700;
+    }
+
+    .card-body h2 {
+      font-size: 3rem;
+    }
+
+    .card-body h5 {
+      font-size: 2rem;
+    }
+
+    .table-wrap {
+      height: 250px;
+      overflow-y: auto;
+    }
   </style>
 </head>
 
 <body>
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-  <a class="my-0 mr-md-auto font-weight-normal header" href="<?php echo site_url('User/Index'); ?>" title="Inventory Management System" data-toggle="tooltip">IMS</a>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 text-dark" href="<?php echo site_url("Admin/Products"); ?>">Products</a>
-    <a class="p-2 text-dark" href="<?php echo site_url("Admin/AllOrders"); ?>">Orders</a>
-    <a class="p-2 text-dark" href="<?php echo site_url("Admin/AllUsers"); ?>">Users</a>
-    <a class="p-2 text-dark" href="<?php echo site_url("Admin/AllComplains"); ?>">Complaints</a>
-    <a class="p-2 text-dark" href="<?php echo site_url("Admin/Bundles"); ?>">Bundles</a>
-  </nav>
-  <a class="btn btn-outline-danger" href="<?php echo site_url("Account/Signout"); ?>">Sign out</a>
-</div>
- 
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <a class="my-0 mr-md-auto font-weight-normal header" href="<?php echo site_url('User/Index'); ?>" title="Inventory Management System" data-toggle="tooltip">IMS</a>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="<?php echo site_url("Admin/Products"); ?>">Products</a>
+      <a class="p-2 text-dark" href="<?php echo site_url("Admin/AllOrders"); ?>">Orders</a>
+      <a class="p-2 text-dark" href="<?php echo site_url("Admin/AllUsers"); ?>">Users</a>
+      <a class="p-2 text-dark" href="<?php echo site_url("Admin/AllComplains"); ?>">Complaints</a>
+      <a class="p-2 text-dark" href="<?php echo site_url("Admin/Bundles"); ?>">Bundles</a>
+    </nav>
+    <a class="btn btn-outline-danger" href="<?php echo site_url("Account/Signout"); ?>">Sign out</a>
+  </div>
+
   <div class="container-fluid mt-5">
     <?php $this->load->view($Content); ?>
   </div>
@@ -80,9 +89,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script type="text/javascript">
-  $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-  })
+    $(document).ready(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
     $('.btn-delete').on('click', function() {
       var id = $(this).attr('data-id');
       var funct = $(this).attr('data-action');
@@ -116,6 +125,10 @@
           window.location.replace('<?php echo site_url("Admin/UpdateUserStatus/"); ?>' + id);
         }
       });
+    });
+    $('.btn-remove').on('click', function() {
+      var id = $(this).attr('data-id');
+      window.location.replace('<?php echo site_url("Admin/RemoveBundleItem/"); ?>' + id);
     });
   </script>
 

@@ -1,7 +1,9 @@
 <div class="row">
     <div class="col-8 offset-2">
         <?php if (!empty($Bundles)) : ?>
-            <h2>Bundles</h2>
+            <h2>Bundles 
+            <a href="<?php echo site_url('Admin/AddBundle') ?>" class="btn float-right btn-outline-primary">Add new</a>
+            </h2>
             <div class="row mt-5">
                 <?php foreach ($Bundles as $Bundle) : ?>
                     <div class="col-6">

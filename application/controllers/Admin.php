@@ -37,6 +37,91 @@ class Admin extends CI_Controller
         $data['Title'] = 'All Orders';
         $this->load->view('Shared/Layout', $data);
     }
+    public function AddBundleItem($id = null)
+    {
+        if ($id == null) {
+            redirect('Admin/AddBundle');
+        } else if (!$this->Product_Model->ProductExists($id)) {
+            redirect('Admin/AddBundle');
+        } else {
+            $this->form_validation->set_rules('QuantityTxt', 'Quantity', 'required');
+            $item = $this->Product_Model->GetProduct($id);
+            $item['Quantity'] = $this->input->post('QuantityTxt');
+            // print_r($item);
+            // die();
+
+            $curr = $this->session->userdata('BundleItems');
+            // array_push($item, $curr);
+            if (array_search($id, array_column($curr, 'ProductID')) !== false) {
+                $key = array_search($id, array_column($curr, 'ProductID'));
+                if ($key != null) {
+                    $curr[$key]['Quantity'] = $curr[$key]['Quantity'] + 1;
+                } else if ($key == 0) {
+                    $curr[0]['Quantity'] = $curr[0]['Quantity'] + 1;
+                }
+            } else {
+                array_push($curr, array(
+                    'ProductID'    =>  $item['ProductID'],
+                    'ProductName'  =>  $item['ProductName'],
+                    'Price' =>  $item['Price'],
+                    'Quantity'   =>  $item['Quantity']
+                ));
+                $curr = array_values($curr);
+            }
+            $this->session->set_userdata('BundleItems', $curr);
+            // $data['Content'] = "Admin/AddBundle";
+            // $data['Title'] = "Add Bundle";
+            // $this->load->view('Shared/Layout');
+        }
+        // print_r($this->session->userdata('BundleItems'));
+        // die();
+        redirect('Admin/AddBundle');
+    }
+    public function RemoveBundleItem($id = null)
+    {
+        if ($id == null) {
+            redirect('Admin/AddBundle');
+        } else if (!$this->Product_Model->ProductExists($id)) {
+            redirect('Admin/AddBundle');
+        } else if (!$this->session->userdata('BundleItems')) {
+            redirect('Admin/AddBundle');
+        } else {
+            $temp = $this->session->userdata('BundleItems');
+            if (array_search($id, array_column($temp, 'ProductID')) !== false) {
+                $key = array_search($id, array_column($temp, 'ProductID'));
+                // $this->session->unset_userdata('BundleItems');
+                // print_r($temp);
+                // print_r($key);
+                // die();
+                if ($key != null) {
+                    unset($temp[$key]);
+                } else if ($key == 0) {
+                    unset($temp[$key]);
+                }
+            }
+            $temp = array_values($temp);
+            $this->session->set_userdata('BundleItems', $temp);
+            redirect('Admin/AddBundle');
+        }
+    }
+    public function AddBundle()
+    {
+        // $this->form_validation->set_rules('PName', 'Product Name', 'required|trim|min_length[3]|xss_clean');
+        // $this->form_validation->set_rules('PPrice', 'Product Price', 'required|trim|xss_clean|greater_than[0]');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['Content'] = "Admin/AddBundle";
+            $data['Title'] = "Add Bundle";
+            $data['BundleItems'] = $this->session->userdata('BundleItems');
+            $data['Items'] = $this->Product_Model->GetActiveProducts();
+            if (!$this->session->userdata('BundleItems')) {
+                $array = array();
+                $this->session->set_userdata('BundleItems', $array);
+            }
+            $this->load->view('Shared/Layout', $data);
+        } else {
+        }
+    }
     public function UpdateUserStatus($id = null)
     {
         if ($id == null) {

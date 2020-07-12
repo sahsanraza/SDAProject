@@ -28,8 +28,8 @@
                             <td>Rs. <?php echo number_format($Order['TotalPrice'], 0); ?></td>
                             <td>
                                 <?php
-                                echo form_open('Admin/UpdateOrderStatus/' . $Order['OrderID']);
-                                $options = [
+                                    echo form_open('Admin/UpdateOrderStatus/' . $Order['OrderID']);
+                                    $options = [
                                     'Pending'  => 'Pending',
                                     'Completed'    => 'Completed',
                                     'Cancelled'  => 'Cancelled',
