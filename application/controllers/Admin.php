@@ -106,9 +106,10 @@ class Admin extends CI_Controller
     }
     public function AddBundle()
     {
-        // $this->form_validation->set_rules('PName', 'Product Name', 'required|trim|min_length[3]|xss_clean');
-        // $this->form_validation->set_rules('PPrice', 'Product Price', 'required|trim|xss_clean|greater_than[0]');
-
+        $this->form_validation->set_rules('BundleNameTxt', 'Bundle Name', 'required|trim|min_length[3]|xss_clean');
+        $this->form_validation->set_rules('DescTxt', 'Bundle Description', 'required|trim|xss_clean');
+        $this->form_validation->set_rules('Discount', 'Discount', 'required|trim|xss_clean|greater_than[0]');
+        $this->form_validation->set_rules('Total', 'Total Price', 'required|trim|xss_clean|greater_than[0]');
         if ($this->form_validation->run() == FALSE) {
             $data['Content'] = "Admin/AddBundle";
             $data['Title'] = "Add Bundle";
@@ -120,6 +121,20 @@ class Admin extends CI_Controller
             }
             $this->load->view('Shared/Layout', $data);
         } else {
+            $name = $this->input->post('BundleNameTxt');
+            $desc = $this->input->post('DescTxt');
+            $disc = $this->input->post('Discount');
+            $tot = $this->input->post('Total');
+            $arr = array(
+                'BundleName' => $name,
+                'Discount' => $disc,
+                'Total' => $tot,
+                'Description'=> $desc
+            );
+            if ($this->Bundle_Model->AddBundle($arr)) {
+                $this->session->set_flashdata('padd', 'Bundle added successfully');
+                redirect('Admin/Bundles');
+            }
         }
     }
     public function UpdateUserStatus($id = null)

@@ -84,6 +84,7 @@ class Account extends CI_Controller
         $this->session->unset_userdata('Address');
         $this->session->unset_userdata('Loggedin');
         $this->session->unset_userdata('Cart');
+        $this->session->unset_userdata('BundleItems');
         redirect("Account/SignIn");
     }
 }

@@ -2,6 +2,10 @@
 class Bundle_Model extends CI_Model
 {
 
+    public function AddBundle($array){
+        $res = $this->db->insert('Bundles', $array);
+        return $res;
+    }
     public function GetBundles()
     {
         // $query = $this->db->get('bundles');  

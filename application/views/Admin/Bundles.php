@@ -1,8 +1,13 @@
 <div class="row">
     <div class="col-8 offset-2">
+        <?php if ($this->session->flashdata('padd')) : ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $this->session->flashdata('padd'); ?>
+            </div>
+        <?php endif; ?>
         <?php if (!empty($Bundles)) : ?>
-            <h2>Bundles 
-            <a href="<?php echo site_url('Admin/AddBundle') ?>" class="btn float-right btn-outline-primary">Add new</a>
+            <h2>Bundles
+                <a href="<?php echo site_url('Admin/AddBundle') ?>" class="btn float-right btn-outline-primary">Add new</a>
             </h2>
             <div class="row mt-5">
                 <?php foreach ($Bundles as $Bundle) : ?>
